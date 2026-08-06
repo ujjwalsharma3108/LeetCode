@@ -9,40 +9,27 @@ class Node:
 
 class Solution(object):
     def copyRandomList(self, head):
-        curr = None
-        new_head = None
-        old_head = head
-        while head is not None:
-            node = Node(head.val)
-            head = head.next
-            if curr is None:
-                curr = node
-                new_head = node
-            else:
-                curr.next = node
-                curr = curr.next
-        new_head1 = new_head
-        old_head1 = old_head
-        
-        while old_head1 is not None:
-            curr1 = old_head
-            new_curr1 = new_head
-            if curr1.random is None:
-                new_head1.random = None
+        if not head:
+            return None
 
-            while curr1 is not None:
-                if old_head1.random is curr1:
-                    new_head1.random = new_curr1
-                elif old_head1.random is None:
-                    new_head1.random 
-                curr1 = curr1.next
-                new_curr1 = new_curr1.next
+        mapping = {}
 
+        # First pass: create copy nodes
+        curr = head
 
-            old_head1 = old_head1.next 
-            new_head1 = new_head1.next 
+        while curr:
+            mapping[curr] = Node(curr.val)
+            curr = curr.next
 
-        return new_head
+        # Second pass: connect next and random
+        curr = head
+
+        while curr:
+            mapping[curr].next = mapping.get(curr.next)
+            mapping[curr].random = mapping.get(curr.random)
+            curr = curr.next
+
+        return mapping[head]
                 
         
         
