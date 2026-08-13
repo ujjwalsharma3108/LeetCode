@@ -1,12 +1,12 @@
 class Solution(object):
     def fib(self, n):
-        memo = {}
+        memo = {i: 0 for i in range(2, n + 1)}
 
         def series(n):
             if (n == 0 or n == 1):
                 return n
             
-            if n in memo :
+            if memo[n] != 0 :
                 return memo[n]
             
             else:
