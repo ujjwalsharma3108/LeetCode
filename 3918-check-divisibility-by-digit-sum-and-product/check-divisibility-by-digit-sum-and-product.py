@@ -1,11 +1,8 @@
 class Solution:
     def checkDivisibility(self, n: int) -> bool:
-        multi = 1
-        sub = 0
-        number = n
-        while number > 0:
-            digit = number % 10
-            multi *= digit
-            sub += digit
-            number = number//10
-        return n % (multi + sub) == 0
+        s, p, x=0, 1, n
+        while x>0:
+            x, r = divmod(x, 10)
+            s+=r
+            p*=r
+        return n%(s+p)==0
