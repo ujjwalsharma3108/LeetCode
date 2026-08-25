@@ -2,20 +2,19 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         ans = []
         running = []
-        def reoccurTask(ans,i,running,target):
-            if sum(running) == target:
+        def backtrack(i, curr_sum):
+            if curr_sum == target:
                 ans.append(running.copy())
                 return
 
-            if sum(running) > target or i == len(candidates):
+            if curr_sum > target or i == len(candidates):
                 return
-            
+
             running.append(candidates[i])
-            reoccurTask(ans,i,running,target)
+            backtrack(i, curr_sum + candidates[i])
             running.pop()
-            reoccurTask(ans,i+1,running,target)
 
-        reoccurTask(ans,0,running,target)
-
+            backtrack(i + 1, curr_sum)
+        backtrack(0, 0)
         return ans
 
