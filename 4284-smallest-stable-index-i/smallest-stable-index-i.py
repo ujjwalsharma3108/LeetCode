@@ -8,8 +8,8 @@ class Solution:
             min_val = min(nums[i:])
 
             if max_val - min_val <= mv:
-                min_index = i if min_index > i else min_index
-                return min_index
+                
+                return i
 
         return -1
 
