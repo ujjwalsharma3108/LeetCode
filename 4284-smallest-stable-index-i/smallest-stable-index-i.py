@@ -9,10 +9,8 @@ class Solution:
 
             if max_val - min_val <= mv:
                 min_index = i if min_index > i else min_index
-                mv = max_val - min_val
+                return min_index
 
-        if min_index == len(nums):
-            return -1
-        return min_index
+        return -1
 
         
