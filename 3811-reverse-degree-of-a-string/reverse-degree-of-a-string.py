@@ -1,6 +1,8 @@
 class Solution:
     def reverseDegree(self, s: str) -> int:
-        sum = 0
-        for i in range(len(s)):
-            sum += (123 - ord(s[i])) * (i+1)
-        return sum
+        ans, idx = 0, 1
+        for ch in s:
+            ans+= (123 - ord(ch)) * idx
+            idx+= 1
+
+        return ans  
