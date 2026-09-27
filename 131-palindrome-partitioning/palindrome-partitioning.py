@@ -12,7 +12,6 @@ class Solution:
         
         for i in range(len(st)):
             str_part = st[:i+1]
-
             if self.isPalindrome(str_part):
                 partition.append(str_part)
                 self.getAllParts(st[i+1:],partition,ans)
