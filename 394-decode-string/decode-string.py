@@ -1,30 +1,28 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        stack = []
 
-        for ch in s:
-            if ch != ']':
-                stack.append(ch)
+        def solve(i):
+            result = ""
+            number = 0
 
-            else:
-                # 1. Closing bracket tak string nikalo
-                temp = ""
+            while i < len(s):
 
-                while stack[-1] != '[':
-                    temp = stack.pop() + temp
+                if s[i].isdigit():
+                    number = number * 10 + int(s[i])
+                    i += 1
 
-                stack.pop()  # '[' remove
+                elif s[i].isalpha():
+                    result += s[i]
+                    i += 1
 
-                # 2. Number nikalo
-                num = ""
+                elif s[i] == '[':
+                    inner, i = solve(i + 1)
+                    result += inner * number
+                    number = 0
 
-                while stack and stack[-1].isdigit():
-                    num = stack.pop() + num
+                else:  # ']'
+                    return result, i + 1
 
-                # 3. Repeat k times
-                decoded = temp * int(num)
+            return result, i
 
-                # 4. Wapas stack me daal do
-                stack.append(decoded)
-
-        return ''.join(stack)
+        return solve(0)[0]
