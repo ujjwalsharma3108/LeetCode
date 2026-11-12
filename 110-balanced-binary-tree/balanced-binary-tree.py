@@ -32,10 +32,8 @@ class Solution:
         if (lft_ht == -1 or rgt_ht == -1):
             return -1
 
-
         if abs(lft_ht - rgt_ht) > 1:
             return -1
-
         return 1 + max(lft_ht,rgt_ht)
         
 
