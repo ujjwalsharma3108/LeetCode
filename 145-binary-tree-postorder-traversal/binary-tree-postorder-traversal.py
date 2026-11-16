@@ -6,15 +6,18 @@
 #         self.right = right
 class Solution(object):
     def postorderTraversal(self, root):
-        result = []
+        if root is None:
+            return []
+        
+        stack = [root]
+        ans = []
+        while len(stack) > 0:
+            node = stack.pop()
+            ans.append(node.val)
 
-        def dfs(node):
-            if node is None :
-                return 
+            if node.left is not None:
+                stack.append(node.left)
+            if node.right is not None:
+                stack.append(node.right)
             
-            dfs(node.left)
-            dfs(node.right)
-
-            result.append(node.val)
-        dfs(root)
-        return result 
+        return [i for i in reversed(ans)]
