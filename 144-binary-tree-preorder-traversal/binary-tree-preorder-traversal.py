@@ -7,19 +7,21 @@
 class Solution(object):
 
     def preorderTraversal(self, root):
-        stack = []
         ans = []
-        curr = root
+        if root is None:
+            return []
+        stack = [root]
 
-        while curr is not None or len(stack) > 0 :
-            while curr is not None :
-                ans.append(curr.val)
-                stack.append(curr)
-                curr = curr.left
-            
+        while len(stack) > 0:
             node = stack.pop()
-            curr = node.right
+            ans.append(node.val)
+
+            if node.right is not None:
+                stack.append(node.right)
+            if node.left is not None:
+                stack.append(node.left)
         return ans
+            
             
 
         
