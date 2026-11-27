@@ -1,14 +1,10 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         coll = {}
-        ans = []
-        for i in strs:
-            j = "".join(sorted(i))
-            if j in coll :
-                coll[j].append(i)
+        for i in strs :
+            ss = "".join(sorted(list(i)))
+            if ss in coll:
+                coll[ss].append(i)
             else:
-                coll[j] = [i]
-                
-        for i,j in coll.items():
-            ans.append(j)
-        return ans
+                coll[ss] = [i]
+        return [j for i , j in coll.items() ]
